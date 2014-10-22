@@ -99,40 +99,40 @@ int setDelayDuration(int incrementSize, int delayDuration) {
     case 5:
    
    
-      return delayDuration/2;
+      return delayDuration/2;// brings array around 
       break;
     default: 
   
   
-      return delayDuration/40;
+      return delayDuration/40;// moves array back
   }
 }
 
 
 
-void pulseRangeOfLeds(int firstPixel, int lastPixel, uint32_t color, int duration) {
+void pulseRangeOfLeds(int firstPixel, int lastPixel, uint32_t color, int duration) {// pulses from first pixel to last pixel
   
   
-  int increment = setIncrementSize(firstPixel, lastPixel, duration);
+  int increment = setIncrementSize(firstPixel, lastPixel, duration);// sets the duration when blink
   
   
   int adjustedTime = setDelayDuration(increment, duration);
   
   
   
-  for(int i = 0; i < pulseBrightness; i+=increment) {
+  for(int i = 0; i < pulseBrightness; i+=increment) {// how bright the pixel gets on the pulse
     strip.setBrightness(i);
     int pixel = firstPixel;
    
    
-    while(pixel < lastPixel) {
+    while(pixel < lastPixel) {// sets the color of the pulse
       turnPixelOn(pixel, color);
       pixel++;
       }
-    delay(adjustedTime);
+    delay(adjustedTime);// delays for a set time 
   }
   
-  for(int i = pulseBrightness; i > 0; i-=increment) {
+  for(int i = pulseBrightness; i > 0; i-=increment) {// the brightness of the pluse when touching
     strip.setBrightness(i);
     int pixel = firstPixel;
     while(pixel < lastPixel) {
